@@ -65,7 +65,7 @@ userListRouter.delete("/users/:id", (req, res) => {
   if (users.length === initialUsersCount) {
     res.send({
       status: 404,
-      msg: "user not found",
+      msg: `User with id ${userIdToDelete} not found`,
     });
   }
 
