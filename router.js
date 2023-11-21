@@ -15,7 +15,6 @@ function getNewId(users) {
   const userIds = users.map((user) => {
     return user.id;
   });
-
   return Math.max(...userIds) + 1;
 }
 
@@ -43,7 +42,6 @@ userListRouter
     const id = getNewId(users);
     let obj = { id, ...newUsers };
     users.push(obj);
-    console.log(users);
     res.status(201).json({
       status: 200,
       msg: "success",
@@ -70,6 +68,7 @@ userListRouter.delete("/users/:id", (req, res) => {
       msg: "user not found",
     });
   }
+
   res.send({
     status: 200,
     msg: `User whit ID ${userIdToDelete} deleted`,
