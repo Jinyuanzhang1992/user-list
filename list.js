@@ -3,17 +3,16 @@ const cors = require("cors");
 const app = express();
 
 //require global middleware
-app.use("/public", express.static("./public"));
-app.use("/files", express.static("./files"));
+app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors()); //必须当成全局中间件使用
 
 // require router module
-const router = require("./router");
+const userListRouter = require("./router");
 
 // use router module
-app.use(router);
+app.use(userListRouter);
 
 // start web server
 const PORT = 50006;
