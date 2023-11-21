@@ -8,7 +8,7 @@ let users = [
   { id: 4, name: "Jane", age: 60 },
 ];
 
-function findUserById(users) {
+function getNewId(users) {
   const userIds = users.map((user) => {
     return user.id;
   });
@@ -28,6 +28,7 @@ userListRouter
       data: users,
     });
   })
+
   // add a new user
   .post((req, res) => {
     const newUsers = ({ userName, age } = req.body);
@@ -37,7 +38,7 @@ userListRouter
         msg: "username and age are required",
       });
     }
-    const id = findUserById(users);
+    const id = getNewId(users);
     let obj = { id, ...newUsers };
     users.push(obj);
     console.log(users);
@@ -47,6 +48,7 @@ userListRouter
       data: users,
     });
   })
+
   // delete all users
   .delete((req, res) => {
     users = [];
