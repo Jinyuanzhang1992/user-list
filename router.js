@@ -1,6 +1,8 @@
+// require express and create a router
 const express = require("express");
 const userListRouter = express.Router();
 
+//initial array of users
 let users = [
   { id: 1, name: "Ben", age: 20 },
   { id: 2, name: "John", age: 30 },
@@ -8,6 +10,7 @@ let users = [
   { id: 4, name: "Jane", age: 60 },
 ];
 
+//get new id
 function getNewId(users) {
   const userIds = users.map((user) => {
     return user.id;
@@ -16,7 +19,6 @@ function getNewId(users) {
   return Math.max(...userIds) + 1;
 }
 
-// send 可以换成json
 userListRouter
   .route("/users")
   // get all users
@@ -75,4 +77,5 @@ userListRouter.delete("/users/:id", (req, res) => {
   });
 });
 
+//export router module
 module.exports = userListRouter;
