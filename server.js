@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors()); //必须当成全局中间件使用
 
 // require router module
-const userListRouter = require("./router");
+const userListRouter = require("./userListRouter");
 
 // use router module
 app.use("/api", userListRouter);

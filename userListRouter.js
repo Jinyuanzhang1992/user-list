@@ -23,7 +23,6 @@ userListRouter
   // fetch all users
   .get((req, res) => {
     try {
-      // throw new Error("This is a test error");
       console.log("success");
       res.send({
         status: 200,
