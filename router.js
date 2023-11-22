@@ -20,28 +20,33 @@ function getNewId(users) {
 
 userListRouter
   .route("/users")
-  // get all users
+  // fetch all users
   .get((req, res) => {
-    console.log("success");
-    res.send({
-      status: 200,
-      msg: "success",
-      data: users,
-    });
+    try {
+      // throw new Error("This is a test error");
+      console.log("success");
+      res.send({
+        status: 200,
+        msg: "success",
+        data: users,
+      });
+    } catch (error) {
+      next(error);
+    }
   })
 
   // add a new user
   .post((req, res) => {
-    const newUsers = ({ userName, age } = req.body);
-    if (!userName || !age) {
+    let newUsers = req.body;
+    if (!newUsers.username || !newUsers.age) {
       return res.status(400).send({
         status: 400,
         msg: "username and age are required",
       });
     }
     const id = getNewId(users);
-    let obj = { id, ...newUsers };
-    users.push(obj);
+    newUsers = { id, ...newUsers };
+    users.push(newUsers);
     res.status(201).json({
       status: 200,
       msg: "success",
@@ -51,30 +56,49 @@ userListRouter
 
   // delete all users
   .delete((req, res) => {
-    users = [];
-    res.status(204).send();
+    try {
+      users = [];
+      res.status(204).send();
+    } catch (error) {
+      next(error);
+    }
   });
 
 // delete a user by id
 userListRouter.delete("/users/:id", (req, res) => {
-  const userIdToDelete = parseInt(req.params.id);
-  const initialUsersCount = users.length;
-  users = users.filter((item) => {
-    return item.id !== userIdToDelete;
-  });
-  if (users.length === initialUsersCount) {
-    res.send({
-      status: 404,
-      msg: `User with id ${userIdToDelete} not found`,
+  try {
+    const userIdToDelete = parseInt(req.params.id);
+    const initialUsersCount = users.length;
+    users = users.filter((item) => {
+      return item.id !== userIdToDelete;
     });
-  }
+    if (users.length === initialUsersCount) {
+      res.send({
+        status: 404,
+        msg: `User with id ${userIdToDelete} not found`,
+      });
+    }
 
-  res.send({
-    status: 200,
-    msg: `User whit ID ${userIdToDelete} deleted`,
-    data: users,
-  });
+    res.send({
+      status: 200,
+      msg: `User whit ID ${userIdToDelete} deleted`,
+      data: users,
+    });
+  } catch (error) {
+    next(error);
+  }
 });
+
+// create error middleware
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack); //输出错误信息
+  res.status(500).json({
+    status: "error",
+    msg: "Internal Server Error",
+  });
+};
+
+userListRouter.use(errorHandler);
 
 //export router module
 module.exports = userListRouter;

@@ -8,7 +8,8 @@
   </head>
   <body>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="list.js"></script>
+    <!-- 临时 Axois -->
+
     <div class="container">
       <h3>User List</h3>
       <div class="user_form">
@@ -18,12 +19,12 @@
         <input type="text" id="age" value="" autocomplete="off" />
       </div>
       <div class="btn_group">
-        <button>Get List</button>
-        <button>Add User</button>
-        <button>Clear List</button>
-        <button>Delete User</button>
+        <button class="get-list">Get List</button>
+        <button class="post-user">Add User</button>
+        <button class="delete-list">Clear List</button>
       </div>
-      <ul id="user_list"></ul>
+      <ul id="user-list"></ul>
     </div>
   </body>
+  <script src="list.js"></script>
 </html>
