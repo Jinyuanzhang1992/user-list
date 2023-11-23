@@ -1,5 +1,5 @@
 const buttonGetList = document.querySelector(".get-list");
-const buttonPostList = document.querySelector(".post-user");
+const buttonPostUser = document.querySelector(".post-user");
 const buttonDeleteList = document.querySelector(".delete-list");
 const userListInHTML = document.querySelector("#user-list");
 const inputName = document.getElementById("username");
@@ -62,7 +62,7 @@ const deleteUserById = (userId, userName) => {
     });
 };
 
-buttonPostList.addEventListener("click", () => {
+buttonPostUser.addEventListener("click", () => {
   postUser();
 });
 
