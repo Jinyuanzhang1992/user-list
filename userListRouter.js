@@ -37,7 +37,9 @@ userListRouter
   // add a new user
   .post((req, res) => {
     let newUsers = req.body;
-    if (!newUsers.username || !newUsers.age) {
+    console.log("newUsers: ", newUsers);
+    if (!newUsers.name || !newUsers.age) {
+      //name要与数据表格中的属性名一致
       return res.status(400).send({
         status: 400,
         msg: "username and age are required",
