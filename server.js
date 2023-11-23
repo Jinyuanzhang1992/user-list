@@ -17,7 +17,7 @@ const userListRouter = require("./userListRouter");
 app.use("/api", userListRouter);
 
 // start web server
-const PORT = 50006;
+const PORT = 51000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

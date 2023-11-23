@@ -32,7 +32,7 @@ const appendUsers = (users) => {
 };
 
 const getList = () => {
-  const url = "http://localhost:50006/api/users";
+  const url = "http://localhost:51000/api/users";
   //.get request的方法
   axios
     .get(url)
@@ -49,7 +49,7 @@ const getList = () => {
 
 const deleteUserById = (userId, userName) => {
   console.log("delete user id: ", userId);
-  const url = "http://localhost:50006/api/users/" + userId;
+  const url = `http://localhost:51000/api/users/${userId}`;
   axios
     .delete(url)
     .then((res) => {
@@ -67,7 +67,7 @@ buttonPostUser.addEventListener("click", () => {
 });
 
 const postUser = () => {
-  const url = "http://localhost:50006/api/users/";
+  const url = "http://localhost:51000/api/users/";
   let nameValue = inputName.value;
   let ageValue = inputAge.value;
   if (!nameValue || !ageValue) {
@@ -104,7 +104,7 @@ buttonDeleteList.addEventListener("click", () => {
 });
 
 const DeleteList = () => {
-  const url = "http://localhost:50006/api/users/";
+  const url = "http://localhost:51000/api/users/";
   axios
     .delete(url)
     .then((res) => {
