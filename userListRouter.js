@@ -15,7 +15,7 @@ function getNewId(users) {
   const userIds = users.map((user) => {
     return user.id;
   });
-  return Math.max(...(userIds, -1)) + 1; //放入一个空数组，返回最大值？？？？
+  return Math.max(...userIds) + 1; //放入一个空数组，返回最大值？？？？
 }
 
 userListRouter
@@ -46,7 +46,9 @@ userListRouter
       });
     }
     const id = getNewId(users);
+
     newUsers = { id, ...newUsers };
+    console.log("newUsers: ", newUsers);
     users.push(newUsers);
     res.status(201).json({
       status: 200,
